@@ -1,0 +1,221 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Equilottery Games Grid</title>
+    <style>
+      @font-face {
+        font-family: trade-gothic-next;
+        src: url(l.woff2);
+      }
+      :root {
+        --font-family: "trade-gothic-next", sans-serif;
+        --dark-green: #126232;
+        --light-green: #3ab764;
+        --white: #ffffff;
+        --black: #000000;
+        --light-gray: #f7f7f7;
+        --gray: #eeeeee;
+        --dark-gray: #9f9f9f;
+      }
+      body {
+        font-family: var(--font-family);
+        font-size: 14px;
+      }
+      .odds-grid {
+        display: grid;
+        max-width: 700px;
+        box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.13);
+        grid-template-areas:
+          "title fieldSize firstPrize"
+          "title fieldSize secondPrize"
+          "overallOdds fieldSize thirdPrize";
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1.2fr 0.5fr 2fr;
+      }
+
+      .title {
+        grid-area: title;
+        text-align: center;
+        padding: 32px 0;
+      }
+
+      .title h2 {
+        margin: 0;
+        font-size: 1.6em;
+      }
+
+      .field-size {
+        grid-area: fieldSize;
+        background-color: var(--dark-green);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--white);
+        padding: 32px 4px;
+        text-align: center;
+      }
+
+      .field-size h3 {
+        font-size: 1.6em;
+        margin: 0;
+      }
+
+      .field-size h2 {
+        font-size: 2.6em;
+        margin: 0;
+      }
+
+      .first-prize {
+        grid-area: firstPrize;
+      }
+
+      .second-prize {
+        grid-area: secondPrize;
+      }
+
+      .third-prize {
+        grid-area: thirdPrize;
+      }
+
+      .prize-section__header,
+      .prize-section__content,
+      .overall-odds__header,
+      .overall-odds__content {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+
+      .prize-section__header {
+        background-color: var(--light-green);
+        color: var(--white);
+        font-weight: bold;
+        font-size: 1.6em;
+      }
+
+      .prize-section__label,
+      .overall-odds__header {
+        color: var(--dark-gray);
+        font-size: 1.2em;
+      }
+
+
+      .prize-section__label {
+        background-color: var(--light-gray);
+        text-align: center;
+      }
+
+      .overall-odds__content,
+      .prize-section__value {
+        font-size: 1.4em;
+        font-weight: bold;
+      }
+
+      .overall-odds__header {
+        background-color: var(--gray);
+      }
+
+      .prize-section__content {
+        font-weight: bold;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .prize-section__label,
+      .prize-section__value {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media screen and (max-width: 768px) {
+        body {
+          font-size: 18px;
+        }
+        .odds-grid {
+          grid-template-rows: 2fr 1fr 3fr 3fr 3fr 2fr;
+          grid-template-columns: 1fr;
+          grid-template-areas: "title" "fieldSize" "firstPrize" "secondPrize" "thirdPrize" "overallOdds";
+        }
+
+        .field-size {
+          flex-direction: row;
+          justify-content: center;
+          padding: 0;
+        }
+
+        .field-size__label,
+        .field-size__value {
+          padding: 0 8px;
+        }
+
+        .prize-section__content {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+        }
+
+        .prize-section__label,
+        .prize-section__value {
+          height: 72px;
+        }
+
+        .title {
+          padding: 0 32px;
+          text-align: left;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="odds-grid">
+      <div class="title">
+        <h2>Win Place Show™</h2>
+        <h2>Odds of Winning</h2>
+      </div>
+      <div class="overall-odds">
+        <div class="overall-odds__header">Overall Odds</div>
+        <div class="overall-odds__content">2 to 1 — 8 to 1*</div>
+      </div>
+      <div class="field-size">
+        <h3 class="field-size__label">Field Size</h3>
+        <h2 class="field-size__value">10</h2>
+      </div>
+      <div class="prize-section first-prize">
+        <div class="prize-section__header">1st Prize</div>
+        <div class="prize-section__content">
+          <span class="prize-section__label">Payout <br/>(avg.)</span>
+          <span class="prize-section__value">$2000</span>
+          <span class="prize-section__label">Odds</span>
+          <span class="prize-section__value">720 to 1</span>
+        </div>
+      </div>
+      <div class="prize-section second-prize">
+        <div class="prize-section__header">2nd Prize</div>
+        <div class="prize-section__content">
+          <span class="prize-section__label">Payout <br/>(avg.)</span>
+          <span class="prize-section__value">$100</span>
+          <span class="prize-section__label">Odds</span>
+          <span class="prize-section__value">144 to 1</span>
+        </div>
+      </div>
+      <div class="prize-section third-prize">
+        <div class="prize-section__header">3rd Prize</div>
+        <div class="prize-section__content">
+          <span class="prize-section__label">Payout <br/>(avg.)</span>
+          <span class="prize-section__value">$100</span>
+          <span class="prize-section__label">Odds</span>
+          <span class="prize-section__value">144 to 1</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
