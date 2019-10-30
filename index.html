@@ -28,11 +28,11 @@
         max-width: 700px;
         box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.13);
         grid-template-areas:
-          "title fieldSize firstPrize"
-          "title fieldSize secondPrize"
-          "overallOdds fieldSize thirdPrize";
-        grid-template-rows: repeat(3, 1fr);
+          "title fieldSize prizes"
+          "overallOdds fieldSize prizes";
+        grid-template-rows: 1fr auto;
         grid-template-columns: 1.2fr 0.5fr 2fr;
+        margin: 32px 0;
       }
 
       .title {
@@ -46,7 +46,7 @@
         font-size: 1.6em;
       }
 
-      .field-size {
+      .event-size {
         grid-area: fieldSize;
         background-color: var(--dark-green);
         display: flex;
@@ -57,30 +57,21 @@
         text-align: center;
       }
 
-      .field-size h3 {
+      .event-size h3 {
         font-size: 1.6em;
         margin: 0;
       }
 
-      .field-size h2 {
+      .event-size h2 {
         font-size: 2.6em;
         margin: 0;
       }
 
-      .first-prize {
-        grid-area: firstPrize;
-      }
-
-      .second-prize {
-        grid-area: secondPrize;
-      }
-
-      .third-prize {
-        grid-area: thirdPrize;
+      .prizes {
+        grid-area: prizes;
       }
 
       .prize-section__header,
-      .prize-section__content,
       .overall-odds__header,
       .overall-odds__content {
         height: 72px;
@@ -102,9 +93,12 @@
         font-size: 1.2em;
       }
 
-
       .prize-section__label {
         background-color: var(--light-gray);
+        text-align: center;
+      }
+
+      .prize-section__value {
         text-align: center;
       }
 
@@ -131,7 +125,7 @@
         justify-content: center;
         flex-direction: column;
         width: 100%;
-        height: 100%;
+        height: 72px;
       }
 
       @media screen and (max-width: 768px) {
@@ -139,30 +133,25 @@
           font-size: 18px;
         }
         .odds-grid {
-          grid-template-rows: 2fr 1fr 3fr 3fr 3fr 2fr;
+          grid-template-rows: 2fr 1fr min-content 2fr;
           grid-template-columns: 1fr;
-          grid-template-areas: "title" "fieldSize" "firstPrize" "secondPrize" "thirdPrize" "overallOdds";
+          grid-template-areas: "title" "fieldSize" "prizes" "overallOdds";
         }
 
-        .field-size {
+        .event-size {
           flex-direction: row;
           justify-content: center;
           padding: 0;
         }
 
-        .field-size__label,
-        .field-size__value {
+        .event-size__label,
+        .event-size__value {
           padding: 0 8px;
         }
 
         .prize-section__content {
           grid-template-columns: repeat(2, 1fr);
           grid-template-rows: repeat(2, 1fr);
-        }
-
-        .prize-section__label,
-        .prize-section__value {
-          height: 72px;
         }
 
         .title {
@@ -176,46 +165,7 @@
     </style>
   </head>
   <body>
-    <div class="odds-grid">
-      <div class="title">
-        <h2>Win Place Show™</h2>
-        <h2>Odds of Winning</h2>
-      </div>
-      <div class="overall-odds">
-        <div class="overall-odds__header">Overall Odds</div>
-        <div class="overall-odds__content">2 to 1 — 8 to 1*</div>
-      </div>
-      <div class="field-size">
-        <h3 class="field-size__label">Field Size</h3>
-        <h2 class="field-size__value">10</h2>
-      </div>
-      <div class="prize-section first-prize">
-        <div class="prize-section__header">1st Prize</div>
-        <div class="prize-section__content">
-          <span class="prize-section__label">Payout <br/>(avg.)</span>
-          <span class="prize-section__value">$2000</span>
-          <span class="prize-section__label">Odds</span>
-          <span class="prize-section__value">720 to 1</span>
-        </div>
-      </div>
-      <div class="prize-section second-prize">
-        <div class="prize-section__header">2nd Prize</div>
-        <div class="prize-section__content">
-          <span class="prize-section__label">Payout <br/>(avg.)</span>
-          <span class="prize-section__value">$100</span>
-          <span class="prize-section__label">Odds</span>
-          <span class="prize-section__value">144 to 1</span>
-        </div>
-      </div>
-      <div class="prize-section third-prize">
-        <div class="prize-section__header">3rd Prize</div>
-        <div class="prize-section__content">
-          <span class="prize-section__label">Payout <br/>(avg.)</span>
-          <span class="prize-section__value">$100</span>
-          <span class="prize-section__label">Odds</span>
-          <span class="prize-section__value">144 to 1</span>
-        </div>
-      </div>
-    </div>
+    <div id="odds-grids"></div>
+    <script src="main.js"></script>
   </body>
 </html>
