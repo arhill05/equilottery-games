@@ -25,7 +25,7 @@
   },
   {
     "title": "Race Car Cash™",
-    "eventSizeLabel": "Cars1st ",
+    "eventSizeLabel": "Cars",
     "eventSizeValue": "40",
     "prizes": [
       { "payout": "$50,000", "odds": "59,280 to 1" },
@@ -38,8 +38,8 @@
   },
   {
     "title": "Golfing for Gold™",
-    "eventSizeLabel": "Cars1st ",
-    "eventSizeValue": "40",
+    "eventSizeLabel": "Golfers",
+    "eventSizeValue": "156",
     "prizes": [
       { "payout": "$2,000,000", "odds": "3,723,720 to 1" },
       { "payout": "$500,000", "odds": "744,744 to 1" },

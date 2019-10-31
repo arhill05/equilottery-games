@@ -18,21 +18,39 @@
         --light-gray: #f7f7f7;
         --gray: #eeeeee;
         --dark-gray: #9f9f9f;
-      }
-      body {
-        font-family: var(--font-family);
-        font-size: 14px;
+        --light-blue: rgb(32, 71, 167);
+        --dark-blue: rgb(19, 46, 112);
+        --light-red: red;
+        --dark-red: darkred;
+        --light-green2: rgba(0, 176, 80);
+        --dark-green2: rgb(0, 116, 52);
       }
       .odds-grid {
         display: grid;
-        max-width: 700px;
+        width: 800px;
         box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.13);
         grid-template-areas:
-          "title fieldSize prizes"
-          "overallOdds fieldSize prizes";
+          "title eventSize prizes"
+          "overallOdds eventSize prizes";
         grid-template-rows: 1fr auto;
         grid-template-columns: 1.2fr 0.5fr 2fr;
         margin: 32px 0;
+      }
+
+      .odds-grid * {
+        font-family: "trade-gothic-next", sans-serif;
+      }
+
+      .odds-grid .event-size h2 {
+        color: var(--white);
+      }
+
+      .odds-grid .title h2 {
+        color: var(--black);
+      }
+
+      .overall-odds {
+        grid-area: overallOdds;
       }
 
       .title {
@@ -47,12 +65,10 @@
       }
 
       .event-size {
-        grid-area: fieldSize;
-        background-color: var(--dark-green);
+        grid-area: eventSize;
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: var(--white);
         padding: 32px 4px;
         text-align: center;
       }
@@ -81,8 +97,6 @@
       }
 
       .prize-section__header {
-        background-color: var(--light-green);
-        color: var(--white);
         font-weight: bold;
         font-size: 1.6em;
       }
@@ -128,6 +142,13 @@
         height: 72px;
       }
 
+      .odds-grid-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
       @media screen and (max-width: 768px) {
         body {
           font-size: 18px;
@@ -135,7 +156,12 @@
         .odds-grid {
           grid-template-rows: 2fr 1fr min-content 2fr;
           grid-template-columns: 1fr;
-          grid-template-areas: "title" "fieldSize" "prizes" "overallOdds";
+          grid-template-areas: "title" "eventSize" "prizes" "overallOdds";
+          width: auto;
+        }
+
+        .odds-grid-wrapper {
+          display: unset;
         }
 
         .event-size {
@@ -162,10 +188,273 @@
           flex-direction: column;
         }
       }
+      /* game specific colors */
+      .odds-grid.win-place-show .prize-section__header {
+        background-color: var(--light-green);
+        color: var(--white);
+      }
+
+      .win-place-show .event-size {
+        background-color: var(--dark-green);
+        color: var(--white);
+      }
+
+      .team-sports .prize-section__header {
+        background-color: var(--light-blue);
+        color: var(--white);
+      }
+
+      .team-sports .event-size {
+        background-color: var(--dark-blue);
+        color: var(--white);
+      }
+
+      .race-car-cash .prize-section__header {
+        background-color: var(--light-red);
+        color: var(--white);
+      }
+
+      .race-car-cash .event-size {
+        background-color: var(--dark-red);
+        color: var(--white);
+      }
+
+      .golfing-for-gold .prize-section__header {
+        background-color: var(--light-green2);
+        color: var(--white);
+      }
+
+      .golfing-for-gold .event-size {
+        background-color: var(--dark-green2);
+        color: var(--white);
+      }
     </style>
   </head>
   <body>
-    <div id="odds-grids"></div>
-    <script src="main.js"></script>
+    <div class="odds-grid-wrapper">
+      <div class="odds-grid win-place-show">
+        <div class="title">
+          <h2>Win Place Show™</h2>
+          <h2>Odds of Winning</h2>
+        </div>
+        <div class="overall-odds">
+          <div class="overall-odds__header">Overall Odds</div>
+          <div class="overall-odds__content">2 to 1 — 8 to 1*</div>
+        </div>
+        <div class="event-size">
+          <h3 class="event-size__label">Field Size</h3>
+          <h2 class="event-size__value">10</h2>
+        </div>
+        <div class="prizes">
+          <div class="prize-section">
+            <div class="prize-section__header">1st Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout <br />(avg.)</span>
+              <span class="prize-section__value">$2000</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">720 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">2nd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$100</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">144 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">3rd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">free ticket</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">35 to 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="odds-grid-wrapper">
+      <div class="odds-grid team-sports">
+        <div class="title">
+          <h2>Team Sports</h2>
+          <h2>Odds of Winning</h2>
+        </div>
+        <div class="overall-odds">
+          <div class="overall-odds__header">Overall Odds</div>
+          <div class="overall-odds__content">6 to 1</div>
+        </div>
+        <div class="event-size">
+          <h3 class="event-size__label">Contests</h3>
+          <h2 class="event-size__value">10</h2>
+        </div>
+        <div class="prizes">
+          <div class="prize-section">
+            <div class="prize-section__header">1st Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout <br />(avg.)</span>
+              <span class="prize-section__value">$1,000</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">1,024 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">2nd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$100</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">102 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">3rd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$10</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">23 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">4th Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">free ticket</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">8.5 to 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="odds-grid-wrapper">
+      <div class="odds-grid race-car-cash">
+        <div class="title">
+          <h2>Race Car Cash™</h2>
+          <h2>Odds of Winning</h2>
+        </div>
+        <div class="overall-odds">
+          <div class="overall-odds__header">Overall Odds</div>
+          <div class="overall-odds__content">7 to 1</div>
+        </div>
+        <div class="event-size">
+          <h3 class="event-size__label">Cars</h3>
+          <h2 class="event-size__value">40</h2>
+        </div>
+        <div class="prizes">
+          <div class="prize-section">
+            <div class="prize-section__header">1st Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout <br />(avg.)</span>
+              <span class="prize-section__value">$50,000</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">59,280 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">2nd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$7,500</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">11,856 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">3rd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$200</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">267 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">4th Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$10</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">14 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">5th Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$5</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">14 to 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="odds-grid-wrapper">
+      <div class="odds-grid golfing-for-gold">
+        <div class="title">
+          <h2>Golfing for Gold™</h2>
+          <h2>Odds of Winning</h2>
+        </div>
+        <div class="overall-odds">
+          <div class="overall-odds__header">Overall Odds</div>
+          <div class="overall-odds__content">9 to 1</div>
+        </div>
+        <div class="event-size">
+          <h3 class="event-size__label">Golfers</h3>
+          <h2 class="event-size__value">156</h2>
+        </div>
+        <div class="prizes">
+          <div class="prize-section">
+            <div class="prize-section__header">1st Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout <br />(avg.)</span>
+              <span class="prize-section__value">$2,000,000</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">3,723,720 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">2nd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$500,000</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">744,744 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">3rd Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$2,500</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">4,056 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">4th Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$35</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">53 to 1</span>
+            </div>
+          </div>
+          <div class="prize-section">
+            <div class="prize-section__header">5th Prize</div>
+            <div class="prize-section__content">
+              <span class="prize-section__label">Payout</span>
+              <span class="prize-section__value">$5</span>
+              <span class="prize-section__label">Odds</span>
+              <span class="prize-section__value">11 to 1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
